@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+
+# Virtual Environment
+venv/
+env/
+.env/
+
+# Data files (if you don't want to push large files)
+data/raw/
+data/processed/
+*.csv
+*.xlsx
+
+# Jupyter Notebooks (if you prefer to keep notebooks clean)
+.ipynb_checkpoints/
+*.ipynb
+
+# Model files (if they're large)
+*.pkl
+*.joblib
+
+# IDE settings
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
