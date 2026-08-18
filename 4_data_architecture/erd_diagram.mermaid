@@ -1,0 +1,92 @@
+erDiagram
+    CUSTOMERS ||--o{ PROJECTS : "has"
+    PROJECTS ||--o{ SITE_SURVEYS : "has"
+    PROJECTS ||--o{ ACTIVITIES_LOG : "logs"
+    PROJECTS ||--o{ PROJECT_PLUGINS : "triggers"
+    PROJECTS ||--o{ MATERIALS_CONSUMED : "consumes"
+    PROJECTS ||--o{ INVOICES : "has"
+    
+    PLUGINS_CATALOG ||--o{ PROJECT_PLUGINS : "is"
+
+    CUSTOMERS {
+        uuid id PK
+        string customer_code UK
+        string name
+        string phone
+        string email
+        string segment
+    }
+
+    PROJECTS {
+        uuid id PK
+        string project_code UK
+        uuid customer_id FK
+        string base_module
+        string project_type
+        decimal quoted_product_revenue
+        decimal quoted_service_revenue
+        decimal product_cogs
+        decimal actual_total_cost
+        decimal gross_profit
+        decimal gross_margin
+        date deposit_received_date
+        decimal deposit_amount
+        string status
+    }
+
+    SITE_SURVEYS {
+        uuid id PK
+        uuid project_id FK
+        string wall_structure
+        decimal ceiling_height
+        string access_restriction
+        string debris_responsibility
+    }
+
+    ACTIVITIES_LOG {
+        uuid id PK
+        uuid project_id FK
+        string technician_name
+        date activity_date
+        time start_time
+        time end_time
+        int layer_id
+        boolean is_rework
+        decimal distance_km
+    }
+
+    PLUGINS_CATALOG {
+        uuid id PK
+        string plugin_code UK
+        string plugin_name_fa
+        string category
+        decimal standard_extra_hours
+    }
+
+    PROJECT_PLUGINS {
+        uuid id PK
+        uuid project_id FK
+        uuid plugin_id FK
+        decimal actual_duration
+        decimal billed_amount
+        boolean is_billable
+        decimal subcontractor_cost
+    }
+
+    MATERIALS_CONSUMED {
+        uuid id PK
+        uuid project_id FK
+        string product_name
+        int quantity
+        decimal unit_cost
+    }
+
+    INVOICES {
+        uuid id PK
+        uuid project_id FK
+        string invoice_number
+        date invoice_date
+        decimal total_amount
+        decimal paid_amount
+        string payment_status
+    }
